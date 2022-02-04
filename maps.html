@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Helyaku</title>
+ 
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Multiple Locations using Google Maps </title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbyX3hL1oUjgVH4Xpm0PQGuOP5iBVfQPs&callback=myMap"></script>
+
+<link rel="stylesheet" href="map.css">
+</head>
+
+
+<body>
+    
+    <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Helyaku</a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+  
+<div id="googleMap" style="width:100%;height:750px;"></div>
+
+  <script type="text/javascript">
+  var locationArray = [
+    ['work with miranda joseph', 18.5248904, 73.7228789, 1],
+    ['work with jeff sim', 19.0825223, 72.7410977, 2],
+    ['work with agar tiny', 19.1104918, 74.6728675, 3],
+    ['work with tom zoland', 21.1594627, 77.3507354, 4],
+    ['work with zendiya spidy', 22.7242284, 75.7237617, 5]
+  ];
+
+  var map = new google.maps.Map(document.getElementById('googleMap'), {
+    zoom: 8,
+    center: new google.maps.LatLng(18.5248904,73.7228789),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  for (i = 0; i < locationArray.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locationArray[i][1], locationArray[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locationArray[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+  </script>
+
+
+<a class="home1"href="homepage.html">Home</a>
+  <a class="about2"href="#about-section">About</a>
+  <a class="profile3"href="profile.html">profile</a>
+
+
+
+
+</body>
+</html> 
